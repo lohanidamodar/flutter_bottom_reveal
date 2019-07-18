@@ -1,16 +1,12 @@
 name: bottomreveal
-description: A new flutter plugin project.
+description: An animated bottom reveal widget.
 version: 1.0.0
-author:
-homepage:
+author: Damodar Lohani <dlohani48@gmail.com>
+homepage: https://github.com/lohanidamodar/flutter_bottom_reveal
 
 environment:
   sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
-    sdk: flutter
-
-dev_dependencies:
-  flutter_test:
     sdk: flutter

@@ -1,3 +1,3 @@
-## 0.0.1
+## 1.0.0
 
-* TODO: Describe initial release.
+* An animated bottom reveal widget, reveals the background widget on click.
