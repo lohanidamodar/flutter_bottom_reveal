@@ -3,15 +3,14 @@ import 'package:bottomreveal/bottomreveal.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget{
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home:  HomePage(),
+      home: HomePage(),
     );
   }
 }
-
 
 class HomePage extends StatefulWidget {
   @override
@@ -21,7 +20,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final BottomRevealController _menuController = BottomRevealController();
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Bottom Reveal Example App'),
@@ -40,33 +39,31 @@ class _HomePageState extends State<HomePage> {
               child: Icon(Icons.cloud_circle),
               color: Colors.grey.shade200,
               elevation: 0,
-              onPressed:() {},
+              onPressed: () {},
             ),
             MaterialButton(
               minWidth: 0,
               child: Icon(Icons.network_wifi),
               color: Colors.grey.shade200,
               elevation: 0,
-              onPressed:() {},
+              onPressed: () {},
             ),
           ],
         ),
         bottomContent: TextField(
           decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.grey,
-            contentPadding: const EdgeInsets.all(8.0),
-            border: OutlineInputBorder(
-              gapPadding: 8.0,
-              borderSide: BorderSide(color: Colors.grey),
-              borderRadius: BorderRadius.circular(30.0)
-            )
-          ),
+              filled: true,
+              fillColor: Colors.grey,
+              contentPadding: const EdgeInsets.all(8.0),
+              border: OutlineInputBorder(
+                  gapPadding: 8.0,
+                  borderSide: BorderSide(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(30.0))),
         ),
         controller: _menuController,
         body: ListView.builder(
           padding: const EdgeInsets.all(16.0),
-          itemBuilder: (_,index)=>Card(
+          itemBuilder: (_, index) => Card(
             child: ListTile(
               title: Text("Item $index"),
               leading: Icon(Icons.cloud_circle),
@@ -77,4 +74,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-

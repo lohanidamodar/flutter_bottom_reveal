@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
 class BottomRevealController {
   Function close;
   Function open;
@@ -19,7 +20,20 @@ class BottomReveal extends StatefulWidget {
   final IconData openIcon;
   final IconData closeIcon;
 
-  const BottomReveal({Key key, this.controller, @required this.body, this.backColor = Colors.grey, this.frontColor = Colors.white, this.borderRadius  = 50, this.revealHeight = 70.0, this.revealWidth = 70.0, this.rightContent, this.bottomContent, @required this.openIcon, @required this.closeIcon}) : super(key: key);
+  const BottomReveal(
+      {Key key,
+      this.controller,
+      @required this.body,
+      this.backColor = Colors.grey,
+      this.frontColor = Colors.white,
+      this.borderRadius = 50,
+      this.revealHeight = 70.0,
+      this.revealWidth = 70.0,
+      this.rightContent,
+      this.bottomContent,
+      @required this.openIcon,
+      @required this.closeIcon})
+      : super(key: key);
   @override
   _BottomRevealState createState() => _BottomRevealState();
 }
@@ -34,7 +48,8 @@ class _BottomRevealState extends State<BottomReveal>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
+    _controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
     opened = false;
     bottomMargin = 0;
     rightMargin = 0;
@@ -56,25 +71,29 @@ class _BottomRevealState extends State<BottomReveal>
       floatingActionButton: _buildActionButton(),
       body: Stack(
         children: <Widget>[
-          if(widget.rightContent != null)
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              width: widget.revealWidth,
-              padding: const EdgeInsets.fromLTRB(8.0, 16.0, 8.0, 90),
-              child: widget.rightContent,
+          if (widget.rightContent != null)
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                width: widget.revealWidth,
+                padding: const EdgeInsets.fromLTRB(8.0, 16.0, 8.0, 90),
+                child: widget.rightContent,
+              ),
             ),
-          ),
-          if(widget.bottomContent != null)
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Container(
-              padding: EdgeInsets.only(left: 8.0, right: widget.revealWidth,bottom: 8.0, top: 8.0),
-              alignment: Alignment.centerRight,
-              height: widget.revealHeight - 15,
-              child: widget.bottomContent),
-          ),
+          if (widget.bottomContent != null)
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Container(
+                  padding: EdgeInsets.only(
+                      left: 8.0,
+                      right: widget.revealWidth,
+                      bottom: 8.0,
+                      top: 8.0),
+                  alignment: Alignment.centerRight,
+                  height: widget.revealHeight - 15,
+                  child: widget.bottomContent),
+            ),
           AnimatedPositioned(
             curve: Curves.easeInOutBack,
             duration: const Duration(milliseconds: 500),
@@ -85,32 +104,36 @@ class _BottomRevealState extends State<BottomReveal>
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
               decoration: BoxDecoration(
-                color: widget.frontColor,
-                borderRadius: opened ? BorderRadius.only(bottomRight: Radius.circular(widget.borderRadius)) : null,
-                boxShadow: [
-                  BoxShadow(
-                    color: widget.backColor.withOpacity(0.5),
-                    blurRadius: 5.0,
-                  ),
-                ]
-              ),
+                  color: widget.frontColor,
+                  borderRadius: opened
+                      ? BorderRadius.only(
+                          bottomRight: Radius.circular(widget.borderRadius))
+                      : null,
+                  boxShadow: [
+                    BoxShadow(
+                      color: widget.backColor.withOpacity(0.5),
+                      blurRadius: 5.0,
+                    ),
+                  ]),
               child: ClipRRect(
-                borderRadius: BorderRadius.only(bottomRight: Radius.circular(widget.borderRadius)),
-                child: opened && !_controller.isAnimating ? Stack(
-                  fit: StackFit.expand,
-                  children: <Widget>[
-                    widget.body,
-                    Container(
-                        color: Colors.black12,
-                    )
-                  ],
-                ) : widget.body,
+                borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(widget.borderRadius)),
+                child: opened && !_controller.isAnimating
+                    ? Stack(
+                        fit: StackFit.expand,
+                        children: <Widget>[
+                          widget.body,
+                          Container(
+                            color: Colors.black12,
+                          )
+                        ],
+                      )
+                    : widget.body,
               ),
             ),
           )
         ],
       ),
-      
     );
   }
 
@@ -122,13 +145,14 @@ class _BottomRevealState extends State<BottomReveal>
         animation: _controller,
         builder: (BuildContext context, Widget child) {
           return Transform(
-            alignment: FractionalOffset.center,
-            transform: Matrix4.rotationZ(_controller.value * .5 * math.pi),
-            child: Icon(_controller.isDismissed ? widget.openIcon : widget.closeIcon)
-          );
+              alignment: FractionalOffset.center,
+              transform: Matrix4.rotationZ(_controller.value * .5 * math.pi),
+              child: Icon(_controller.isDismissed
+                  ? widget.openIcon
+                  : widget.closeIcon));
         },
       ),
-      onPressed: (){
+      onPressed: () {
         _toggle();
       },
     );
@@ -153,9 +177,9 @@ class _BottomRevealState extends State<BottomReveal>
   }
 
   _toggle() {
-    if(opened) {
+    if (opened) {
       _close();
-    }else{
+    } else {
       _open();
     }
   }
