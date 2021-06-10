@@ -2,28 +2,28 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class BottomRevealController {
-  Function close;
-  Function open;
-  Function toggle;
+  Function? close;
+  Function? open;
+  Function? toggle;
 }
 
 class BottomReveal extends StatefulWidget {
-  final BottomRevealController controller;
+  final BottomRevealController? controller;
   final Widget body;
   final Color backColor;
   final Color frontColor;
   final double borderRadius;
   final double revealHeight;
   final double revealWidth;
-  final Widget rightContent;
-  final Widget bottomContent;
+  final Widget? rightContent;
+  final Widget? bottomContent;
   final IconData openIcon;
   final IconData closeIcon;
 
   const BottomReveal(
-      {Key key,
+      {Key? key,
       this.controller,
-      @required this.body,
+      required this.body,
       this.backColor = Colors.grey,
       this.frontColor = Colors.white,
       this.borderRadius = 50,
@@ -31,8 +31,8 @@ class BottomReveal extends StatefulWidget {
       this.revealWidth = 70.0,
       this.rightContent,
       this.bottomContent,
-      @required this.openIcon,
-      @required this.closeIcon})
+      required this.openIcon,
+      required this.closeIcon})
       : super(key: key);
   @override
   _BottomRevealState createState() => _BottomRevealState();
@@ -40,10 +40,10 @@ class BottomReveal extends StatefulWidget {
 
 class _BottomRevealState extends State<BottomReveal>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  double bottomMargin;
-  double rightMargin;
-  bool opened;
+  late AnimationController _controller;
+  double? bottomMargin;
+  double? rightMargin;
+  late bool opened;
 
   @override
   void initState() {
@@ -99,8 +99,8 @@ class _BottomRevealState extends State<BottomReveal>
             duration: const Duration(milliseconds: 500),
             bottom: bottomMargin,
             right: rightMargin,
-            top: -bottomMargin,
-            left: -rightMargin,
+            top: -bottomMargin!,
+            left: -rightMargin!,
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
               decoration: BoxDecoration(
@@ -143,7 +143,7 @@ class _BottomRevealState extends State<BottomReveal>
       elevation: 0,
       child: AnimatedBuilder(
         animation: _controller,
-        builder: (BuildContext context, Widget child) {
+        builder: (BuildContext context, Widget? child) {
           return Transform(
               alignment: FractionalOffset.center,
               transform: Matrix4.rotationZ(_controller.value * .5 * math.pi),

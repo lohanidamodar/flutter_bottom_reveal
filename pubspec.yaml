@@ -1,11 +1,11 @@
 name: bottomreveal
 description: An animated bottom reveal widget.
-version: 1.0.0
+version: 2.0.0
 author: Damodar Lohani <dlohani48@gmail.com>
 homepage: https://github.com/lohanidamodar/flutter_bottom_reveal
 
 environment:
-  sdk: ">=2.2.2 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
