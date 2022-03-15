@@ -147,7 +147,7 @@ class _BottomRevealState extends State<BottomReveal>
           return Transform(
               alignment: FractionalOffset.center,
               transform: Matrix4.rotationZ(_controller.value * .5 * math.pi),
-              child: Icon(_controller.isDismissed
+              child: Icon(!_controller.isDismissed
                   ? widget.openIcon
                   : widget.closeIcon));
         },
@@ -171,7 +171,7 @@ class _BottomRevealState extends State<BottomReveal>
     setState(() {
       rightMargin = 0;
       bottomMargin = 0;
-      _controller.reverse();
+      _controller.forward();
       opened = false;
     });
   }
